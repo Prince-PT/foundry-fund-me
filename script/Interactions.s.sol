@@ -29,10 +29,7 @@ contract WithdrawFundMe is Script {
     uint256 constant SEND_VALUE = 0.01 ether;
 
     function run() external {
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "FundMe",
-            block.chainid
-        );
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("FundMe", block.chainid);
         //address mostRecentlyDeployed = 0x2de4145217fff7E4EAff9B7feEbA44c99E5103Dd;
 
         withdrawFundMe(mostRecentlyDeployed);

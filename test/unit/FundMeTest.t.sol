@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
+
 import {Test, console} from "forge-std/Test.sol";
 import {FundMe} from "../../src/FundMe.sol";
 import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
@@ -83,10 +84,7 @@ contract FundMeTest is Test {
         uint256 endingOwnerBalance = fundMe.getOwner().balance;
         uint256 endingFundMeBalance = address(fundMe).balance;
         assertEq(endingFundMeBalance, 0);
-        assertEq(
-            endingOwnerBalance - startingOwnerBalance,
-            startingFundMeBalance
-        );
+        assertEq(endingOwnerBalance - startingOwnerBalance, startingFundMeBalance);
     }
 
     function testWithDrawFromMultipleFunders() public funded {
@@ -109,10 +107,7 @@ contract FundMeTest is Test {
         vm.stopPrank();
         //assert
         assert(address(fundMe).balance == 0);
-        assert(
-            fundMe.getOwner().balance - startingOwnerBalance ==
-                startingFundMeBalance
-        );
+        assert(fundMe.getOwner().balance - startingOwnerBalance == startingFundMeBalance);
     }
 
     function testWithDrawFromMultipleFundersCheaper() public funded {
@@ -135,9 +130,6 @@ contract FundMeTest is Test {
         vm.stopPrank();
         //assert
         assert(address(fundMe).balance == 0);
-        assert(
-            fundMe.getOwner().balance - startingOwnerBalance ==
-                startingFundMeBalance
-        );
+        assert(fundMe.getOwner().balance - startingOwnerBalance == startingFundMeBalance);
     }
 }
